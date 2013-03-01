@@ -1,4 +1,29 @@
-from exchange.models import Currency, ExchangeRate
+from exchange.models import Currency, ExchangeRate, ExchangeRateHistorical
+from exchange.adapters.openexchangerates import OpenExchangeRatesAdapter
+
+
+def get_or_fetch_historical_exchange_rate(source, target, date):
+    """get the historical exchange rate for given source currency,
+       target currency, and date
+
+    :param source: the source currency code
+    :param target: the target currency code
+
+    :returns: historical exchange rate or None
+    :rtype: ``ExchangeRateHistorical``
+    """
+    try:
+        exchange_rate = ExchangeRateHistorical.objects.get(source=source, target=target, date=date)
+    except ExchangeRateHistorical.DoesNotExist:
+        #try to fetch it from the exchange rate api
+        OpenExchangeRatesAdapter().update_historical_exchange_rates(source, date)
+        #try again whether it can be found now in the db
+        try:
+            exchange_rate = ExchangeRateHistorical.objects.get(source=source, target=target, date=date)
+        except ExchangeRateHistorical.DoesNotExist:
+            exchange_rate = None
+    return exchange_rate
+
 
 
 def convert(price, currency):
@@ -35,7 +60,7 @@ class Price(object):
         self.currency = currency
 
     def convert(self, currency):
-        """Converts the price of a currency hold by currenct instance to
+        """Converts the price of a currency hold by currency instance to
         another one
 
         :param currency: ISO-4217 currency code
