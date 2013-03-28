@@ -50,6 +50,7 @@ class BaseAdapter(object):
         """
         for source in Currency.objects.filter(code=source.code):
             exchange_rate_json = self.get_historical_exchangerate(source.code, date) or []
+            print exchange_rate_json
             for code, rate in exchange_rate_json['rates'].items():
                 date = datetime.datetime.fromtimestamp(int(exchange_rate_json['timestamp']), tz=utc)
                 try:
