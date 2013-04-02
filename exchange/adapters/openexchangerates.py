@@ -64,7 +64,6 @@ class OpenExchangeRatesClient(object):
         base='USD' #for testing purposes!! in order to use free version..only usd is supported in the free version as base
         try:
             historical_url = self.ENDPOINT_HISTORICAL + date.strftime('%Y-%m-%d') + '.json'
-            print historical_url
             resp = self.client.get(historical_url, params={'base': base})
             resp.raise_for_status()
         except requests.exceptions.RequestException, e:

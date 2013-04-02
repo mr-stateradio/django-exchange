@@ -2,6 +2,23 @@ from exchange.models import Currency, ExchangeRate, ExchangeRateHistorical
 from exchange.adapters.openexchangerates import OpenExchangeRatesAdapter
 
 
+def get_historical_exchange_rate(source, target, date):
+    """get the historical exchange rate for given source currency,
+       target currency, and date
+
+    :param source: the source currency code
+    :param target: the target currency code
+
+    :returns: historical exchange rate or None
+    :rtype: ``ExchangeRateHistorical``
+    """
+    try:
+        exchange_rate = ExchangeRateHistorical.objects.get(source=source, target=target, date=date)
+    except ExchangeRateHistorical.DoesNotExist:
+        exchange_rate = None
+    return exchange_rate
+
+
 def get_or_fetch_historical_exchange_rate(source, target, date):
     """get the historical exchange rate for given source currency,
        target currency, and date

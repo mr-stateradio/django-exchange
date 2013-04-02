@@ -33,3 +33,4 @@ class Command(BaseCommand):
         except (ImportError, TypeError), detail:
             raise CommandError("invalid adapter class: Detail: %s" % detail)
         adapter.update()
+        self.stdout.write('Successfully fetched currencies and latest exchange rates.')
