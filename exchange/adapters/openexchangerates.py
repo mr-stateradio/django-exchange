@@ -51,7 +51,7 @@ class OpenExchangeRatesClient(object):
                 }
             }
         """
-        base='USD' #for testing purposes!! in order to use free version..only usd is supported in the free version as base
+        #base='USD' #uncomment this line for testing purposes!! in order to use free version..only usd is supported in the free version as base
         try:
             resp = self.client.get(self.ENDPOINT_LATEST, params={'base': base})
             resp.raise_for_status()
@@ -61,7 +61,7 @@ class OpenExchangeRatesClient(object):
 
     def historical(self, base, date):
         """Fetches historical exchange rate data from service"""
-        base='USD' #for testing purposes!! in order to use free version..only usd is supported in the free version as base
+        #base='USD' #uncomment this line for testing purposes!! in order to use free version..only usd is supported in the free version as base
         try:
             historical_url = self.ENDPOINT_HISTORICAL + date.strftime('%Y-%m-%d') + '.json'
             resp = self.client.get(historical_url, params={'base': base})

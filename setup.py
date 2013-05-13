@@ -11,7 +11,6 @@ setup(
     provides = ['exchange'],
     version='0.0.2',
     description='currency, exchange rates and conversions support for django',
-    author='Metglobal',
-    author_email='kadir.pekel@metglobal.com',
-    url='https://github.com/metglobal/django-exchange'
+    #origin author Metglobal #originator email: kadir.pekel@metglobal.com
+    url='http://github.com/mr-stateradio/django-exchange',
 )
