@@ -42,7 +42,6 @@ class Command(BaseCommand):
         execute_update = True
         # make sure file option is present
         if options.get('today', False):
-            self.stdout.write('...fetch todays exchange rates')
             start_date = date.today()
             end_date = date.today()
             #check if all exchange rates for today are already present - if yes - cancel thread
@@ -52,7 +51,6 @@ class Command(BaseCommand):
             if target_number == exchange_rate_count:
                 #cancel termination - all exchange rates already available
                 execute_update = False
-                self.stdout.write('..todays exchange rates already available')
         else:
             if options['startdate'] == None :
                 raise CommandError("Option `--startdate=...` must be provided.")
@@ -92,7 +90,5 @@ class Command(BaseCommand):
             
             #for each day in date range call update_historical_exchange_rates
             for curr_date in daterange(start_date, end_date, mode=1):
-                self.stdout.write('...fetching rates for date %s ' % (curr_date))
                 for source in currencies:
                     adapter.update_historical_exchange_rates(source, curr_date)
-            self.stdout.write('Successfully fetched exchange rates for date range %s - %s.' % (start_date, end_date))
