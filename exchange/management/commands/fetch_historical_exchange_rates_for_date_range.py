@@ -82,7 +82,7 @@ class Command(BaseCommand):
                 first_name, last_name = arg.split('.')
             except ValueError:
                 first_name, last_name = arg, None
-        
+
         if execute_update == True:
             currencies = Currency.objects.all()
             if len(currencies) == 0:
