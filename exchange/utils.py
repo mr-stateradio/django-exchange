@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from exchange.models import Currency
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta

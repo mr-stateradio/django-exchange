@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from exchange.models import Currency, ExchangeRate, ExchangeRateHistorical
 from exchange.adapters.openexchangerates import OpenExchangeRatesAdapter
 
