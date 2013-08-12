@@ -21,7 +21,7 @@ class ExchangeRate(models.Model):
     source = models.ForeignKey('exchange.Currency', related_name='rates')
     target = models.ForeignKey('exchange.Currency')
     timestamp = models.DateTimeField()
-    rate = models.DecimalField(max_digits=12, decimal_places=2)
+    rate = models.DecimalField(max_digits=14, decimal_places=4)
 
     def __unicode__(self):
         return '%s / %s / %s = %s' % (self.source, self.target, self.timestamp, self.rate)
@@ -33,7 +33,7 @@ class ExchangeRateHistorical(models.Model):
     source = models.ForeignKey('exchange.Currency', related_name='historical_rates')
     target = models.ForeignKey('exchange.Currency')
     date = models.DateField()
-    rate = models.DecimalField(max_digits=12, decimal_places=2)
+    rate = models.DecimalField(max_digits=14, decimal_places=4)
 
     def __unicode__(self):
         return '%s / %s / %s = %s' % (self.source, self.target, self.date, self.rate)
