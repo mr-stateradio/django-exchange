@@ -9,7 +9,7 @@ setup(
     #      ],
     #  },
     provides = ['exchange'],
-    version='0.1.0',
+    version='0.2.0',
     description='currency, exchange rates and conversions support for django',
     #origin author Metglobal #originator email: kadir.pekel@metglobal.com
     url='http://github.com/mr-stateradio/django-exchange',
