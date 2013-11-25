@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-import datetime
 
 class Currency(models.Model):
     """Model holds a currency information for a nationality"""

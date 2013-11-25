@@ -2,9 +2,7 @@
 
 from datetime import datetime, date
 from optparse import make_option
-from time import mktime, strptime
 
-from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from exchange.utils import import_class, daterange
