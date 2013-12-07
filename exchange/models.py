@@ -1,11 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.conf import settings
+
+class CurrencyManager(models.Manager):
+    def get_query_set(self):
+        supported_currencies = getattr(settings, 'SUPPORTED_CURRENCIES', [])
+        return super(CurrencyManager, self).get_query_set().filter(code__in=supported_currencies)
 
 class Currency(models.Model):
     """Model holds a currency information for a nationality"""
     code = models.CharField(max_length=3, unique=True)
     name = models.CharField(max_length=64)
+
+    objects = CurrencyManager()
 
     class Meta:
         ordering = ['code']
