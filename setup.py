@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='django-exchange',
-    packages=['exchange', 'exchange.adapters',  'exchange.adapters.tests', 'exchange.management', 'exchange.management.commands'],
+    packages=['exchange', 'exchange.adapters', 'exchange.migrations', 'exchange.adapters.tests', 'exchange.management', 'exchange.management.commands'],
     #package_data={
     #      'exchange': [
     #          'fixtures/initial_data.json'
